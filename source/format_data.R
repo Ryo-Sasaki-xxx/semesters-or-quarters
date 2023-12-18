@@ -13,8 +13,6 @@ read.csv(
     year=as.integer(year),
   ) -> semester_df1
 
-semester_df1
-
 read.csv(
   "raw_data/semester_dummy/semester_data_2.csv",
   fileEncoding = "UTF-8",
