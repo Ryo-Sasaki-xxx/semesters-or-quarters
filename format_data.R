@@ -54,4 +54,7 @@ readxl::read_excel(
                          pattern="aaaa",
                          replacement=""
     )
-  )
+  ) %>%
+  pivot_wider(names_from = "category",
+              values_from = "value"
+             )
