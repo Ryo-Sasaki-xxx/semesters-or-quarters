@@ -1,4 +1,4 @@
-library(tidyverse, readxl)
+library(tidyverse, readxl, stringr)
 
 # a問題
 read.csv(
@@ -43,19 +43,15 @@ for (file_name in file_name_list) {
 }
 
 # c問題
-gradrate_df <- NULL
-
-file_name_list <-
-  list.files(path = "raw_data/outcome" ,
-             pattern = "\\.xlsx$",
-             full.names = TRUE)
-
-for (file_name in file_name_list) {
-  readxl::read_excel(
-    file_name
+readxl::read_excel(
+  "raw_data/covariates/covariates.xlsx"
+) %>%
+  rename(
+    unitid = university_id
   ) %>%
-    mutate(
-      women_gradrate_4yr = 0.01 * women_gradrate_4yr
-    ) %>%
-    bind_rows(gradrate_df) -> gradrate_df
-}
+  mutate(
+    unitid = str_replace(unitid,
+                         pattern="aaaa",
+                         replacement=""
+    )
+  )
